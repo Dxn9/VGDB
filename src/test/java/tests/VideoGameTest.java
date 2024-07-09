@@ -37,13 +37,7 @@ public class VideoGameTest {
     @Test
     @Description("Add a new video game to the DB")
     public void testCreateGame() {
-        VideoGame game = new VideoGame();
-        game.setId(10);
-        game.setName("GTA 6");
-        game.setReleaseDate("2026-07-08");
-        game.setReviewScore("95");
-        game.setCategory("Action");
-        game.setRating("Universal");
+        VideoGame game = new VideoGame(10, "GTA 6", "2026-07-08", "95", "Action", "Universal");
         Response response = videoGameController.createGame(game);
         Assert.assertEquals(response.getStatusCode(), 200);
         Assert.assertEquals(response.jsonPath().getString("name"), game.getName());
@@ -52,13 +46,7 @@ public class VideoGameTest {
     @Test
     @Description("Update an existing video game in the DB by specifying a new body")
     public void testUpdateGame() {
-        VideoGame game = new VideoGame();
-        game.setId(10);
-        game.setName("GTA 6");
-        game.setReleaseDate("2026-11-21");
-        game.setReviewScore("99");
-        game.setCategory("Action");
-        game.setRating("Universal");
+        VideoGame game = new VideoGame(10, "GTA 6", "2026-11-21", "99", "Action", "Universal");
         Response response = videoGameController.updateGame(game.getId(), game);
         Assert.assertEquals(response.getStatusCode(), 200);
         Assert.assertEquals(response.jsonPath().getString("name"), game.getName());
